@@ -38,10 +38,7 @@ public class CoreDataManger{
         do {
             try self.context!.save()
         }
-        catch  {
-            //print("failed save")
-           
-        }
+        catch  {}
     }
     
     func getData(keyword:String,completion:([GeoName]?)->())  {

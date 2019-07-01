@@ -30,48 +30,10 @@ class ViewController: UIViewController {
         self.geoNamesTable.register(nib, forCellReuseIdentifier: "GeoNameCell")
         self.searchTexField.clearButtonMode = .whileEditing
     }
-    
-    
-    
-//    func reloadDataTable(keyword:String) {
-//        CoreDataManger.getCoreDataManger().getData(keyword: keyword) { (data) in
-//            if data != nil{
-//                // reload data table
-//                self.geoNameArray = data!
-//                self.geoNamesTable.reloadData()
-//            }
-//            else{
-//                DispatchQueue.global(qos: .background).async {
-//                    ServerManger.getServerManger().getSearchJson(keyword: keyword, completion: { (data) in
-//                        if let geoNames = data{
-//                            DispatchQueue.main.async {
-//                                if !geoNames.isEmpty {
-//                                    self.geoNameArray = geoNames
-//                                    self.geoNamesTable.reloadData()
-//                                    let city:City = City(keyword:keyword , geoNames: geoNames)
-//                                    CoreDataManger.getCoreDataManger().saveData(city: city)
-//                                }
-//                                else{
-//                                    Alert.presentAlert(title: "City is not found", VC: self)
-//                                }
-//                            }
-//                        }
-//                        else{
-//                            // print alert error
-//                            //print("faild")
-//                            Alert.presentAlert(title: "City is not found", VC: self)
-//                        }
-//                    })
-//                }
-//            }
-//        }
-//    }
-    
-    
+
     @IBAction func tapSearchButton(_ sender: UIButton) {
         self.searchTexField.resignFirstResponder()
         if !(self.searchTexField.text!.isEmpty) {
-//            reloadDataTable(keyword: self.searchTexField.text!.lowercased())
             DataManager.getDataManager().getData(keyword: self.searchTexField.text!.lowercased()) { (data) in
                 if let geoNames = data {
                     self.geoNameArray = geoNames
